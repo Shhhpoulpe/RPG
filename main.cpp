@@ -62,7 +62,11 @@ string generationNomMechant()
 
 Personnage creaMechant()
 {
+    string nom = generationNomMechant();
 
+    Personnage mechant(nom, 100, 100);
+
+    return mechant;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -73,17 +77,15 @@ Personnage creaMechant()
 
 int main()
 {
-    /*
     Personnage hero = creaHero();
-    cout << hero.getNom() << endl;
-    cout << hero.getVie() << endl;
-    cout << hero.getMana() << endl;
+    cout << "Nom hero : " << hero.getNom() << endl;
+    cout << "Vie hero : "  << hero.getVie() << endl;
+    cout << "Mana hero : " << hero.getMana() << endl << endl << endl;
 
     Personnage mechant = creaMechant();
-    cout << mechant.getNom() << endl;
-    cout << mechant.getVie() << endl;
-    cout << mechant.getMana() << endl;
-*/
-    cout << generationNomMechant() << endl;
+    cout << "Nom mechant : " << mechant.getNom() << endl;
+    cout << "Vie mechant : " << mechant.getVie() << endl;
+    cout << "Mana mechant : " << mechant.getMana() << endl;
+
     return 0;
 }
