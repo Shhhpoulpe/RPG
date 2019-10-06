@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1570381889 source:c:\users\shpoulpe\onedrive\bureau\cours\c++\programmes\rpg\main.cpp
+1570386883 source:c:\users\shpoulpe\onedrive\bureau\cours\c++\programmes\rpg\main.cpp
 	<iostream>
+	<stdlib.h>
+	<time.h>
 	"niveau.h"
 
 1570379563 c:\users\shpoulpe\onedrive\bureau\cours\c++\programmes\rpg\niveau.h
