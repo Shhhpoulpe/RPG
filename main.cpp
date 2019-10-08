@@ -71,11 +71,11 @@ Personnage creaMechant()
 
     string lstAttaques[][5] =
     {
-        {"0","Fire Ball","100","100","critique"},
-        {"1","Thunderbolt","90","90","critique"},
-        {"2","Air Slash","75","95","critique"},
-        {"3","Solar Beam","120","85","critique"},
-        {"4","Hydro Cannon","90","100","critique"},
+        {"0","Attaque","10","100","2"},
+        {"1","Tonnerre","30","90","2"},
+        {"2","Boule de feu","20","95","2"},
+        {"3","Trou Noir","120","85","2"},
+        {"4","Lumicanon","90","100","2"},
 
     };
 
@@ -97,17 +97,7 @@ void attaque(Personnage attaquant, Personnage cible){
       cout << endl;
    }
 
-   for( int k = 0; k < 5; k++){
-        cout << int(lstAttaques[k]) << endl;
-//      cin >> choice;
-//
-//      if (choice == lstAttaques[k]){
-//         cout << "reussi" << endl;
-//      } else {
-//         cout << "rate" << endl;
-//      }
-//
-   }
+   cout << lstAttaques ;
 
 
 
@@ -126,7 +116,6 @@ void attaque(Personnage attaquant, Personnage cible){
 int main()
 {
 
-    //cout << lstAttaques[4][1] << endl;
 
     Personnage hero = creaHero();
     cout << "Nom hero : " << hero.getNom() << endl;
@@ -141,6 +130,18 @@ int main()
     cout << " \n " ;
 
     attaque(hero,mechant);
+
+    if ( hero.getVie() > mechant.getVie() ){
+        attaque(mechant,hero);
+    } else {
+        attaque(hero,mechant);
+    }
+
+    if( hero.getVie() == 0){
+        cout << "le mechant a gagne " << endl;
+    } else {
+        cout << "le hero a gagne " << endl;
+    }
 
     return 0;
 }
