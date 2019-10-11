@@ -97,7 +97,7 @@ void Victoire(Personnage mechant, Personnage hero, int i)
         mechant.getNom() + " a totalement raison",
         "lortograf cere a ri1"
     };
-    cout << message[i];
+    cout << "VICTOIRE \n" << message[i] << endl;
 }
 
 void Defaite(Personnage mechant, Personnage hero, int i)
@@ -118,7 +118,7 @@ void Defaite(Personnage mechant, Personnage hero, int i)
         mechant.getNom() + " pense qu'on manque d'idee pour les defaites et a raison",
         "L'ortographe regne sur la terre "
     };
-    cout << message[i];
+    cout << "DEFAITE \n" << message[i] << endl;
 }
 
 Personnage creaHero()
@@ -195,15 +195,15 @@ Personnage attaque(Personnage attaquant, Personnage victime)
         } else {
             cout << "Vous ratez votre attaque" << endl;
             cout << endl;
-
         }
-
+    }
+    else
+    {
         srand(time(0));
         choice = rand() % 4;
         pvVictime -= lstDegat[choice];
         victime.setVie(pvVictime);
         cout << "Le mechant a utilise l'attaque " << lstAttaques[choice][1] << " et a fais " << lstDegat[choice] << " degats" << endl << endl;
-
     }
 
 
@@ -233,6 +233,23 @@ void Combat(Personnage hero, Personnage mechant)
     }
 }
 
+bool restartPrompt()
+{
+    string choice;
+    cout << "voulez vous rejouer ? [y/n]" << endl;
+    cin >> choice;
+    if (choice == "y")
+    {
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        return true;
+    }
+    else
+    {
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        return false;
+    }
+}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------- MAIN ---------------------------------------------------------------------------------------
@@ -242,10 +259,16 @@ void Combat(Personnage hero, Personnage mechant)
 
 int main()
 {
-
+    bool restart = true;
     Personnage hero = creaHero();
     Personnage mechant = creaMechant();
+    while(restart)
+    {
+        hero.setVie(100);
+        mechant = creaMechant();
 
-    messageId = MessageDebut(mechant, hero);
-    Combat(hero, mechant);
+        messageId = MessageDebut(mechant, hero);
+        Combat(hero, mechant);
+        restart = restartPrompt();
+    }
 }
