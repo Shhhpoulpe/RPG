@@ -140,8 +140,11 @@ string generationNomMechant()
     srand(time(0));
     string listeNom[] = {"leBlanc","leGris","leNoir","le Maudit","le maitre des haches","le maitre des lames","le grand","le petit"};
     string listePrenom[] = {"Draven","Balthazar","Jinx","Igor","Mathieu","Jack","Oscar","Nicolas","Bob"};
-    string nom =listePrenom[rand() % (sizeof(listePrenom)/sizeof(*listePrenom))] + " " + listeNom[rand() % (sizeof(listeNom)/sizeof(*listeNom))];
+    string nom =listePrenom[rand() % (sizeof(listePrenom)/sizeof(*listePrenom))];
+    nom += " " + listeNom[rand() % (sizeof(listeNom)/sizeof(*listeNom))];
     return nom;
+
+
 }
 
 Personnage creaMechant()
