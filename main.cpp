@@ -31,7 +31,7 @@ int messageId;
 class Personnage
 {
     public:
-    Personnage(string n, bool h, int v, int m)
+    Personnage(string n, bool h, int v)
     : nom(n), hero(h), vie(v)
     {}
 
@@ -130,7 +130,7 @@ Personnage creaHero()
     getline(cin,nom);
     cout << endl;
 
-    Personnage hero(nom, 1, 100, 100);
+    Personnage hero(nom, 1, 100);
 
     return hero;
 }
@@ -148,7 +148,7 @@ Personnage creaMechant()
 {
     string nom = generationNomMechant();
 
-    Personnage mechant(nom, 0, 100, 100);
+    Personnage mechant(nom, 0, 100);
 
     return mechant;
 }
