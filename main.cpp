@@ -1,174 +1,84 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include "niveau.h"
 
 using namespace std;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------- LES VARIABLES ------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-string lstAttaques[][5] =
-{
-    {"0","Attaque","10","100","2"},
-    {"1","Tonnerre","30","90","2"},
-    {"2","Boule de feu","20","95","2"},
-    {"3","Trou Noir","120","85","2"},
-    {"4","Lumicanon","90","100","2"},
-};
-
-int lstDegat[5] ={10,30,20,120,90};
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------- LES CLASSES --------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-class Personnage
-{
-    public:
-    Personnage(string n, bool h, int v, int m)
-    : nom(n), hero(h), vie(v), mana(m)
-    {}
-
-    string getNom() const { return nom; }
-    bool getHero() const { return hero; }
-    int getVie() const { return vie; }
-    int getMana() const { return mana; }
-
-    void setNom(string n) { nom = n;};
-    void setHero(bool h) { hero = h;};
-    void setVie(int v) { vie = v;};
-    void setMana(int m) { mana = m;};
-
-    private:
-    string nom;
-    bool hero;
-    int vie;
-    int mana;
-};
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------- LES FONCTIONS ------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Personnage creaHero()
-{
-    string nom;
-
-    cout << "Quel est votre nom aventurier?" << endl;
-    cout << "Votre nom : ";
-    getline(cin,nom);
-    cout << endl;
-
-    Personnage hero(nom, 1, 100, 100);
-
-    return hero;
-}
-
-string generationNomMechant()
-{
-    srand(time(0));
-    string listeNom[] = {"leBlanc","leGris","leNoir","le Maudit","le maitre des haches","le maitre des lames","le grand","le petit"};
-    string listePrenom[] = {"Draven","Balthazar","Jinx","Igor","Mathieu","Jack","Oscar","Nicolas","Bob"};
-    string nom =listePrenom[rand() % (sizeof(listePrenom)/sizeof(*listePrenom))] + " " + listeNom[rand() % (sizeof(listeNom)/sizeof(*listeNom))];
-    return nom;
-}
-
-Personnage creaMechant()
-{
-    string nom = generationNomMechant();
-
-    Personnage mechant(nom, 0, 100, 100);
-
-    return mechant;
-}
-
-void afficheStat(Personnage hero, Personnage mechant)
-{
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-    cout << "Nom hero : " << hero.getNom() << endl;
-    cout << "Vie hero : "  << hero.getVie() << endl;
-    cout << "Mana hero : " << hero.getMana() << endl << endl << endl;
-    cout << "Nom mechant : " << mechant.getNom() << endl;
-    cout << "Vie mechant : " << mechant.getVie() << endl;
-    cout << "Mana mechant : " << mechant.getMana() << endl << endl;
-}
-
-Personnage attaque(Personnage attaquant, Personnage victime)
-{
-    int choice;
-    int pvVictime = victime.getVie();
-    int i,j;
-
-    if(attaquant.getHero())
-    {
-        cout << attaquant.getNom() << " Choissisez votre attaque (numero) : " << endl;
-
-        /* Affichage de la liste des attaques */
-        for ( i = 0; i < 5; i++ ) {
-            for ( j = 0; j < 5; j++ ) {
-                if( j == 0 || j == 1 ){
-                    cout << " " << lstAttaques[i][j] ;
-                }
-            }
-            cout << endl;
-        }
-
-        cin >> choice ;
-
-        pvVictime -= lstDegat[choice];
-        victime.setVie(pvVictime);
-
-    } else{
-
-        pvVictime -= lstDegat[1];
-        victime.setVie(pvVictime);
-
-    }
-
-
-    return victime;
-
-
-}
-
-void Combat(Personnage hero, Personnage mechant)
-{
-    afficheStat(hero, mechant);
-
-    if ( hero.getVie() >= mechant.getVie() ){
-        mechant = attaque(hero, mechant);
-    } else {
-        hero = attaque(mechant, hero);
-    }
-
-    if( hero.getVie() <= 0){
-        cout << "le mechant a gagne " << endl;
-    } else if (mechant.getVie() <= 0) {
-        cout << "le hero a gagne " << endl;
-    } else {
-        Combat(hero, mechant);
-    }
-}
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------- MAIN ---------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 int main()
 {
+    int puissance, pouvoir, vie, niveau, choix, exp;
+    int evilPuissance, evilPouvoir, evilVie, evilNiveau;
+    int joueurNiveau = 1;
+    cout << "Choisis une classe : (numero classe) " << endl;
+    cout << "1. Guerrier" << endl;
+    cout << "2. Mage" << endl;
+    int joueurClasse;
+    cin >> joueurClasse;
+    if (joueurClasse == 1)
+    {
+        puissance = 10;
+        pouvoir = 2;
+        vie = 100;
+        cout << "Tu as choisis la classe Guerrier! Voici tes stats!" << endl;
+        cout << "Puissance = " << puissance << endl << "Pouvoir = " << pouvoir << endl << "Vie = " << vie << endl;
+    }
+    else if (joueurClasse == 2)
+    {
+        puissance = 3;
+        pouvoir = 15;
+        vie = 90;
+        cout << "Tu as choisis la classe Mage! Voici tes stats!" << endl;
+        cout << "Puissance = " << puissance << endl << "Pouvoir = " << pouvoir << endl << "Vie = " << vie << endl;
+    }
 
-    Personnage hero = creaHero();
-    Personnage mechant = creaMechant();
 
-    Combat(hero, mechant);
+    while ( vie > 0){
+        cout << "Bienvenue! Quel est votre choix?" << endl << "\n 1. Tuer les monstres!" << "\n 2. Rester chez soi" << endl;
+        cin >> choix;
+        if (choix == 1)
+        {
+            cout << "1. Un gobelin sauvage lvl 1 " << endl;
+            cout << string( 100, '\n' );
+            cout << "C'est l'heure du duel!" << endl;
+            evilVie = 40;
+            evilPuissance = 4;
+            evilPouvoir = 0;
+
+
+            while (vie > 0)
+            {
+                if (evilVie < 0)
+                {
+
+                    cout << "Vous avez tue le gobelin! "<< endl;
+                    cout << "Veuillez continuer (n'importe quel chiffre) :" << endl;
+                    cin >> choix;
+                    cout << string( 100, '\n' );
+
+                    break;
+                }
+                vie -= evilPuissance * 2;
+                cout << "Le gobelin frappe et fait " << evilPuissance * 2 << " de degat sur vous!" << "\nVous avez " << vie << " point de vie restant!" << endl;
+                cout << "Choississez : " << "\n 1. Attack" << "\ 2. Lancer un sort" << endl;
+                cin >> choix;
+                if (choix == 1)
+                {
+                    evilVie -= puissance * 2;
+                    cout << "vous avez balancez votre arme qui fait " << puissance * 2 << " de degat sur le gobelin!" << endl;
+                    cout << "le gobelin a " << evilVie << " point de vie!" << endl;
+                }
+                else if (choix == 2)
+                {
+                    evilVie -= pouvoir * 2;
+                    cout << "vous avez lance une boule de feu qui fait " << pouvoir * 2 << " de degat sur le gobelin!" << endl;
+                    cout << "le gobelin a " << evilVie << " point de vie!" << endl;
+                }
+
+            }
+        }
+    }
+    if (vie < 0)
+        cout << endl;
+        cout << "Vous etes mort" << endl;
+
 
     return 0;
 }
