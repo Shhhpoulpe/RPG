@@ -74,20 +74,6 @@ Une classe Personnage a été créer pour que le héro et le méchant ce partage
 * Si le héro a autant ou moins de PV que le méchant, il attaque en premier ce tour-ci
 * La fonction vérifie si quelqu'un est KO, sinon, il relance la fonction Combat()
 
-## Main
-
-### Personnage hero = creaHero()
-
-* Crée le hero
-
-### Personnage mechant = creaMechant()
-
-* Crée le méchant
-
-### messageId = MessageDebut(mechant, hero);
-
-* Affiche le message de début de combat et sauvegarde l'id du message
-
-### Combat(hero, mechant)
-
-* Lance le combat
+### bool restartPrompt()
+* Demande au joueur si il veut recommancer une partie
+* Retourne True ou False
