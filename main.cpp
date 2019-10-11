@@ -12,11 +12,11 @@ using namespace std;
 
 string lstAttaques[][5] =
 {
-    {"0","Attaque","10","100","2"},
-    {"1","Tonnerre","30","90","2"},
-    {"2","Boule de feu","20","95","2"},
-    {"3","Trou Noir","25","85","2"},
-    {"4","Lumicanon","30","100","2"},
+    {"0","Attaque","10"},
+    {"1","Tonnerre","30"},
+    {"2","Boule de feu","20"},
+    {"3","Trou Noir","25"},
+    {"4","Lumicanon","30"},
 };
 
 int lstDegat[5] ={10,30,20,25,30};
@@ -61,7 +61,7 @@ int MessageDebut(Personnage mechant , Personnage hero)
         "Vous entrez dans une taverne et " + mechant.getNom() + " vous acceuil avec un air menaçant",
         "Vous voulez couper du bois mais " + mechant.getNom() + " plante sa hache dedans avant vous et veux vous le voler",
         "Vous marchez dans la rue mais " + mechant.getNom() + " est sur votre trottoire et vous l'aggressez sans raison valable",
-        "Olala, le scénario vous force a affronter " + mechant.getNom() +" quel choc :O",
+        "Olala, le scenario vous force a affronter " + mechant.getNom() +" quel choc :O",
         mechant.getNom() + ": OHOH, tu oses t'approcher de moi? \n" + hero.getNom() + ": je ne peut pas te battre sans m'approcher de toi",
         "Vous decouvrez que " + mechant.getNom() + " joue des personnages de distance sur la top lane",
         mechant.getNom() + " joue a des jeux videos et est en retard pour son projet, il met en retard son camarade",
@@ -91,7 +91,7 @@ void Victoire(Personnage mechant, Personnage hero, int i)
         "Felicitation, vous venez d'eradiquer le sida",
         mechant.getNom() + " s'appelait en vrai Maxime",
         "La team chocolatine viens de gagner",
-        "Il n'avait pas tord, vous vous sentez très mal de l'avoir assassinee",
+        "Il n'avait pas tord, vous vous sentez tres mal de l'avoir assassinee",
         mechant.getNom() + " a ete retrouve mort rouee de coup",
         "En fuyant le combat " + mechant.getNom() + " c'est pris un creeper en plein visage ",
         mechant.getNom() + " a totalement raison",
@@ -105,13 +105,13 @@ void Defaite(Personnage mechant, Personnage hero, int i)
     string message[] =
     {
         mechant.getNom() + " bois une bierre sur votre corps",
-        mechant.getNom() + " a volée tout le bois",
+        mechant.getNom() + " a volee tout le bois",
         "Vous perdez votre combat et la police vous arrete pour agression",
         "Olala, vous avez perdu",
         mechant.getNom() + ": ROADA ROLLA DAH",
         mechant.getNom() + " a gagne sa top lane, quelle surprise",
-        mechant.getNom() + " n'est finalement pas en retard et tout est calculé",
-        "La team pain au chocolat a gagné, la france est en deuil",
+        mechant.getNom() + " n'est finalement pas en retard et tout est calcule",
+        "La team pain au chocolat a gagne, la france est en deuil",
         mechant.getNom() + " avais tord et on ne sais meme pas comment faire un scenario de defaite dans ces conditions",
         "Avec la puissance de Yung Gravy, le train c'est transformee en Gravy Train",
         mechant.getNom() + " sors son sniper de Phantom Force sur Roblox et vous 360 noscope across the map",
@@ -191,16 +191,18 @@ Personnage attaque(Personnage attaquant, Personnage victime)
             cout << "Le hero a utilise l'attaque " << lstAttaques[choice][1] << " et a fais " << lstDegat[choice] << " degats" << endl << endl;
         } else {
             cout << "Vous ratez votre attaque" << endl;
+            cout << endl;
+
         }
 
-
-    } else{
         srand(time(0));
         choice = rand() % 4;
         pvVictime -= lstDegat[choice];
         victime.setVie(pvVictime);
         cout << "Le mechant a utilise l'attaque " << lstAttaques[choice][1] << " et a fais " << lstDegat[choice] << " degats" << endl << endl;
+
     }
+
 
 
     return victime;
